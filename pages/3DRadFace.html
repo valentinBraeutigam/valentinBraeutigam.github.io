@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="We reconstruct the Shape, Expression and Pose of human faces from radar images by using CNNs and the Basel Face Model.">
+  <meta name="keywords" content="Face Reconstruction, Radar, Machine Learning, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Reconstruction of Faces From Radar Images</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./3DRadFace/static/css/bulma.min.css">
+  <link rel="stylesheet" href="./3DRadFace/static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./3DRadFace/static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./3DRadFace/static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./3DRadFace/static/css/index.css">
+  <!--<link rel="icon" href="./3DRadFace/static/images/favicon.png">-->
+  <!-- <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🖐🏻</text></svg>"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./3DRadFace/static/js/fontawesome.all.min.js"></script>
+  <script src="./3DRadFace/static/js/bulma-carousel.min.js"></script>
+  <script src="./3DRadFace/static/js/bulma-slider.min.js"></script>
+  <script src="./3DRadFace/static/js/index.js"></script>
+</head>
+
+<body>
+  <a href="https://valentinBraeutigam.github.io">Back to personal page</a>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">3D Reconstruction of Faces From Radar Images</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://valentinBraeutigam.github.io">Valentin Braeutigam</a>,</span>
+              <span class="author-block">
+                <a href="https://vwirth.github.io/">Vanessa Wirth</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.lhft.eei.fau.de/archive/person/dipl-ing-ingrid-ullmann">Ingrid Ullmann</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.lhft.eei.fau.de/archive/person/schuessler-christian-m-sc">Christian Schüßler</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.lhft.eei.fau.de/archive/person/prof-dr-ing-martin-vossiek">Martin
+                  Vossiek</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://klips.phil.fau.de/berking">Matthias Berking</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://eggerbernhard.ch/">Bernhard Egger</a>,
+              </span>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Friedrich-Alexander-Universität Erlangen-Nürnberg</span>
+            </div>
+
+            <!--<h2 style="text-align: center; font-size:1.6em; font-weight: 800;"></h2>-->
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2412.02403"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./3DRadFace/static/images/overview.svg" id="teaser" width="100%">
+        <h2 class="subtitle has-text-centered">
+          We reconstruct the Shape, Expression and Pose of human faces from radar images by using CNNs and the Basel Face Model.
+        </h2>
+
+      </div>
+    </div>
+  </section>
+  <!--
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay controls muted loop playsinline height="100%">
+          <source src="./3DRadFace/static/videos/results.webm" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          We reconstruct the Shape, Expression and Pose of human faces from radar images by using CNNs and the Basel Face Model.
+        </h2>
+      </div>
+    </div>
+  </section>
+-->
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel" >
+          <video id="shape1" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_1.mp4" type="video/mp4">
+          </video>
+          <video id="shape2" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_2.mp4" type="video/mp4">
+          </video>
+          <video id="shape3" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_3.mp4" type="video/mp4">
+          </video>
+          <video id="shape4" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_4.mp4" type="video/mp4">
+          </video>
+          <video id="shape5" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_5.mp4" type="video/mp4">
+          </video>
+          <video id="shape6" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_6.mp4" type="video/mp4">
+          </video>
+          <video id="shape7" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_7.mp4" type="video/mp4">
+          </video>
+          <video id="shape8" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_8.mp4" type="video/mp4">
+          </video>
+          <video id="shape9" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Shape_9.mp4" type="video/mp4">
+          </video>
+          <video id="expr1" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_1.mp4" type="video/mp4">
+          </video>
+          <video id="expr2" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_2.mp4" type="video/mp4">
+          </video>
+          <video id="expr3" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_3.mp4" type="video/mp4">
+          </video>
+          <video id="expr4" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_4.mp4" type="video/mp4">
+          </video>
+          <video id="expr5" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_5.mp4" type="video/mp4">
+          </video>
+          <video id="expr6" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_6.mp4" type="video/mp4">
+          </video>
+          <video id="expr7" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Expression_7.mp4" type="video/mp4">
+          </video>
+          <video id="transX" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Translation_x.mp4" type="video/mp4">
+          </video>
+          <video id="transY" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Translation_y.mp4" type="video/mp4">
+          </video>
+          <video id="rotR" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Rotation_Roll.mp4" type="video/mp4">
+          </video>
+          <video id="rotP" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Rotation_Pitch.mp4" type="video/mp4">
+          </video>
+          <video id="rotY" autoplay muted loop playsinline >
+            <source src="./3DRadFace/static/videos/Rotation_Yaw.mp4" type="video/mp4">
+          </video>
+        
+        <!--<div id="results-carousel" class="carousel results-carousel"> -->
+        </div>
+        <h2 class="subtitle has-text-centered">
+          The input radar images while changing the Shape Model parameters of the ground truth meshes individually.
+        </h2>
+
+        <div class="container">
+          <div class="hero-body">
+            <img src="./3DRadFace/static/images/results_autoencoder_combined_synth.svg" id="teaser" width="100%">
+            <h2 class="subtitle has-text-centered">
+              The resulting meshes from the autoencoder trained on amplitude and depth images evaluated on synthetic radar images. The Ground Truth (GT) are five meshes from the validation set generated from the Basel Face Model.
+            </h2>
+    
+          </div>
+        </div>
+    </div>
+
+  </section>
+
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            The 3D reconstruction of faces gains wide attention in computer vision and is used in many fields of application, for example, animation, virtual reality, and even forensics. 
+            This work is motivated by monitoring patients in sleep laboratories. Due to their unique characteristics, sensors from the radar domain have advantages compared to optical sensors, namely penetration of electrically non-conductive materials and independence of light. 
+            These advantages of radar signals unlock new applications and require adaptation of 3D reconstruction frameworks. We propose a novel model-based method for 3D reconstruction from radar images. 
+            We generate a dataset of synthetic radar images with a physics-based but non-differentiable radar renderer. This dataset is used to train a CNN-based encoder to estimate the parameters of a 3D morphable face model. 
+            Whilst the encoder alone already leads to strong reconstructions of synthetic data, we extend our reconstruction in an Analysis-by-Synthesis fashion to a model-based autoencoder. This is enabled by learning the rendering process in the decoder, which acts as an object-specific differentiable radar renderer. 
+            Subsequently, the combination of both network parts is trained to minimize both, the loss of the parameters and the loss of the resulting reconstructed radar image. This leads to the additional benefit, that at test time the parameters can be further optimized by finetuning the autoencoder unsupervised on the image loss. 
+            We evaluated our framework on generated synthetic face images as well as on real radar images with 3D ground truth of four individuals.
+
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <section stlye="justify-content: center" class="hero is-light is-small">
+    <div class="hero-body is-light ">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+      <div class="column is-one-quarter is-centered">
+        <h2 class="title is-5" style="text-align:center;">Paper</h2>
+        <a href="./3DRadFace/static/docs/paper.pdf">
+          <img
+            style="width:79%;margin-left:auto;margin-right:auto;display:block;border-color: grey;border-style:solid"
+            src=" ./3DRadFace/static/docs/paper_thumbnail.png" />
+        </a>
+      </div> 
+      </div>
+    </div>
+    </div>
+
+  </section>
+
+  </section>
+
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{braeutigam20243dfacereconstructionradar,
+        title={3D Face Reconstruction From Radar Images}, 
+        author={Valentin Braeutigam and Vanessa Wirth and Ingrid Ullmann and Christian Schüßler and Martin Vossiek and Matthias Berking and Bernhard Egger},
+        year={2024},
+        eprint={2412.02403},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2412.02403}, 
+  }</code></pre>
+    </div>
+  </section>
+
+  <section class="section" id="Acknowledgements">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgements</h2>
+
+      <p>This work was supported in part by Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – SFB1483 – Project-ID 442419336, EmpkinS. </p>
+      <p>The authors would like to thank the Rohde & Schwarz GmbH & Co. KG (Munich, Germany) for providing the radar imaging devices and technical support that made this study possible. </p>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./pages/3DRadFace/static/docs/paper.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/valentinBraeutigam" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Source code of this website is stolen from the <a
+                href="https://github.com/nerfies/nerfies.github.io">nerfies</a>
+              project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

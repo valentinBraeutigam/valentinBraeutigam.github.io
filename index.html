@@ -24,8 +24,9 @@
                 </p>
                 <p>I am a PhD candidate at the <a href="https://www.lgdv.tf.fau.de/">Chair of Visual Computing</a> (LGDV) at FAU Erlangen-Nürnberg, supervised by Prof. Bernhard Egger.
                 </p>
+                <p>You can find me on: </p>
                 <p style="text-align:center">
-                  <a href="https://scholar.google.com/citations?view_op=list_works&hl=de&user=jwxZ_zoAAAAJ">Scholar</a> &nbsp;/&nbsp;
+                  <a href="https://scholar.google.com/citations?view_op=list_works&hl=de&user=jwxZ_zoAAAAJ">Google Scholar</a> &nbsp;/&nbsp;
                   <a href="https://bsky.app/profile/valentinBraeutigam.bsky.social">Bluesky</a> &nbsp;/&nbsp;
                   <a href="https://github.com/valentinBraeutigam/">Github</a>
                 </p>
@@ -40,7 +41,7 @@
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  I'm interested in computer vision, deep learning and out of distribution detection.
+                  I'm interested in computer vision, deep learning and out of distribution detection. At the moment I'm working on the automated detection of display errors in navigation systems.
                 </p>
               </td>
             </tr>
@@ -48,26 +49,57 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
 
+      <tr onmouseout="radFace_stop()" onmouseover="radFace_start()" bgcolor="#ffffd0">
+        <td style="padding:16px;width:20%;vertical-align:middle">
+          <div class="one">
+            <div class="two" id='radFace_image'>
+            <video  width=100% height=100% muted autoplay loop>
+            <source src="./pages/3DRadFace/static/videos/Shape_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video></div>
+              <img src='images/radFace.jpeg' width=100% >
+            
+          </div>
+          <script type="text/javascript">
+            function radFace_start() {
+              document.getElementById('radFace_image').style.opacity = "1";
+            }
+  
+            function radFace_stop() {
+              document.getElementById('radFace_image').style.opacity = "0";
+            }
+            radFace_stop()
+          </script>
+        </td>
+        <td style="padding:8px;width:80%;vertical-align:middle">
+          <a href="https://arxiv.org/abs/2412.02403">
+        <span class="papertitle">3D Face Reconstruction From Radar Images
+        </span>
+                </a>
+                <br>
+                <strong>Valentin Braeutigam</strong>,
+                <a href="https://vwirth.github.io/">Vanessa Wirth</a>,
+                <a href="https://www.lhft.eei.fau.de/archive/person/dipl-ing-ingrid-ullmann">Ingrid Ullmann</a>,
+                <a href="https://www.lhft.eei.fau.de/archive/person/schuessler-christian-m-sc">Christian Schüßler</a>,
+                <a href="https://www.lhft.eei.fau.de/archive/person/prof-dr-ing-martin-vossiek">Martin Vossiek</a>,
+                <a href="https://klips.phil.fau.de/berking">Matthias Berking</a>
+                <a href="https://eggerbernhard.ch/">Bernhard Egger</a>
+                <br>
+                <em>arXiv</em>, 2024
+                <br>
+                <a href="./pages/3DRadFace.html">[Project Page]</a>
+                <a href="https://arxiv.org/abs/2412.02403">[Paper]</a>
+                <p></p>
+              </td>
+            </tr>
 
-    <tr onmouseout="neuralRend_stop()" onmouseover="neuralRend_start()" bgcolor="#ffffd0">
+
+    <tr>
       <td style="padding:16px;width:20%;vertical-align:middle">
         <div class="one">
-          <div class="two" id='neuralRend_image'><video  width=100% height=100% muted autoplay loop>
-          <source src="images/neuralRend.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-          </video></div>
+          <div class="two" id='neuralRend_image'>
           <img src='images/neuralRendering_quad.png' width="160">
         </div>
-        <script type="text/javascript">
-          function neuralRend_start() {
-            document.getElementById('neuralRend_image').style.opacity = "1";
-          }
-
-          function neuralRend_stop() {
-            document.getElementById('neuralRend_image').style.opacity = "0";
-          }
-          neuralRend_stop()
-        </script>
       </td>
       <td style="padding:8px;width:80%;vertical-align:middle">
         <a href="https://dl.acm.org/doi/10.1145/3641825.3687751">
@@ -79,12 +111,12 @@
 				<strong>Valentin Bräutigam</strong>,
 				<a>Nidhi Joshi</a>,
 				<a>Constantin Kleinbeck</a>,
-        <a>Hannah Schieber</a>,
+        <a href="https://hannahhaensen.github.io/">Hannah Schieber</a>,
         <a>Julian Kreimeier</a>
         <br>
         <em>VRST</em>, 2024
         <br>
-        <a href="https://dl.acm.org/doi/10.1145/3641825.3687751">ACM</a>
+        <a href="https://dl.acm.org/doi/10.1145/3641825.3687751">[Paper]</a>
         <p></p>
       </td>
     </tr>
